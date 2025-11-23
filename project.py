@@ -15,7 +15,14 @@ class Patient:
     state: {self.condition}
     --------------------"""
 
-    @classmethod
-    def show_all(cls):
-        for patient in cls.all_patients.values():
-            print(patient.show_info())
+class NormalPatient(Patient):
+    def show_info(self):
+        return f"normal Patient" + super().show_info()
+
+
+class EmergencyPatient(Patient):
+    def __init__(self,name,age,phone,condition,priority ):
+        super().__init__(name,age,phone,condition)
+        self.priority= priority
+    def show_info(self):
+        return f"EmergencyPatient(priority{self.priority}):"+super().show_info()
